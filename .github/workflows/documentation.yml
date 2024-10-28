@@ -30,10 +30,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.x
-    - name: Use README.md as index.md
-      run: cp README.md Documentation/index.md
+    
+    - run: cp README.md Documentation/index.md
     - run: dotnet tool update -g docfx
-    - name: Generate docs
     - run: docfx Documentation/docfx.json
 
     - name: Upload artifact
