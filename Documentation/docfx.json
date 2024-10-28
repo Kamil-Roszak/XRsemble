@@ -58,7 +58,8 @@
         "resource": [
             {
                 "files": [
-                    "resources/**/*"
+                    "resources/**/*",
+                    "../images/**/*"
                 ]
             }
         ],
