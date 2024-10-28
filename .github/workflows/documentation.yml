@@ -32,16 +32,18 @@ jobs:
         dotnet-version: 8.x
     
     - run: cp README.md Documentation/index.md
-    - run: mkdir -p _site/images
     - run: dotnet tool update -g docfx
     - run: docfx Documentation/docfx.json
+    - run: mkdir -p _site/images
     - run: cp -r ./images _site/images
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload entire repository
-        path: '_site'
+        path: |
+          '_site'
+          'images'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
