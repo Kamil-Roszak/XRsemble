@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - dev
-      - XRSEM-8-Fix-github-page-auto-docs-generation
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
