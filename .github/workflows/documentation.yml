@@ -32,7 +32,8 @@ jobs:
         dotnet-version: 8.x
     
     - run: cp README.md Documentation/index.md
-    - run: cp -r ./images Documentation/_site/images
+    - run: mkdir -p _site/images
+    - run: cp -r ./images _site/images
     - run: dotnet tool update -g docfx
     - run: docfx Documentation/docfx.json
 
