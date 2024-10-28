@@ -1,0 +1,13 @@
+apiRules:
+- include:
+    uidRegex: ^XRsemble
+    type: Namespace
+- include:
+    uidRegex: ^XRsemble.Core
+    type: Namespace
+- include:
+    uidRegex: ^Global
+    type: Namespace
+- exclude:
+    uidRegex: .*
+    type: Namespace
