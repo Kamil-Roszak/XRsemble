@@ -10,7 +10,7 @@
   <p align="center">
     Create, and share interactive instructions that can be view on XR devices
     <br />
-    <a href="https://kamil-roszak.github.io/XRsemble"><strong>Explore the docs »</strong></a>
+    <a href="https://kamil-roszak.github.io/XRsemble/manual/getting_started.html"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Kamil-Roszak/XRsemble">View Demo</a>
