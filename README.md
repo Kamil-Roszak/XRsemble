@@ -47,6 +47,17 @@ Servicing devices, replacing worn-out parts, assembling furniture—all of it co
 
 See the [open issues](https://github.com/Kamil-Roszak/XRsemble/issues) for a full list of proposed features (and known issues).
 
+## Compatibility
+
+The project is based on OpenXR, so support for more devices is planned in the future.
+
+| VR Headset           | Support        |
+| :-------------------: | :------------: |
+| Quest 2/3/3S/Pro     | :heavy_check_mark: |
+| HoloLens 2           | :heavy_check_mark: |
+| Pico Neo 3/4/4 Ultra | Planned        |
+| Vive Focus 3/XR Elite| Planned        |
+| Apple Vision Pro     | Planned        |
 
 ## External resources
 
