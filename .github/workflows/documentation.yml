@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - XRSEM-8-Fix-github-page-auto-docs-generation
 
 jobs:
   # Build the documentation
