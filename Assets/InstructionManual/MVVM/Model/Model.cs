@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using XRsemble.MVVM.Observables;
+using XRsemble.MVVM.Disposables;
+
+namespace XRsemble.MVVM.Model
+{
+    /// <summary>
+    /// Basic model class that can be observed.
+    /// </summary>
+    public class Model : Observables.IObservable<Model>
+    {
+       private readonly List<IObservable> _children = new List<IObservable>();
+
+        public void Add(IObservable model)
+        {
+            _children.Add(model);
+        }
+
+        public IDisposable InvokeAndSubscribe(Action<Model> action)
+        {
+            action.Invoke(this);
+            return Subscribe(action);
+        }
+
+        public IDisposable Subscribe(Action<Model> action)
+        {
+            action.Invoke(this);
+            return Subscribe(action);
+        }
+
+        public IDisposable InvokeAndSubscribe(Action action)
+        {
+            action.Invoke();
+            return Subscribe(action);
+        }
+
+        public IDisposable Subscribe(Action action)
+        {
+            var count = _children.Count;
+            if (count == 0)
+            {
+                return new EmptyDisposable();
+            }
+
+            if (count == 1)
+            {
+                return _children[0].Subscribe(action);
+            }
+
+            var disposables = new DisposableList(count);
+            for (var i = 0; i < count; i++)
+            {
+                disposables.Add(_children[i].Subscribe(action));
+            }
+
+            return disposables;
+        }
+    }
+}
