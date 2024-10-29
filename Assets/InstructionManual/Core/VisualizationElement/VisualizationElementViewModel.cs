@@ -4,16 +4,21 @@ using XRsemble.MVVM.Bindings.TextMeshPro;
 
 namespace XRsemble.Core
 {
-    public class VisualizationElementViewModel : ViewModel<VisualizationElementView, VisualizationElementModel>
+    // Make VisualizationElementViewModel generic with view and model constraints
+    public class VisualizationElementViewModel<TView, TModel> : ViewModel<TView, TModel>
+        where TView : VisualizationElementView
+        where TModel : VisualizationElementModel
     {
-        protected override void SetupBindings(VisualizationElementModel model)
+        protected override void SetupBindings(TModel model)
         {
-            View.NameText.Bind(model.Name).AddTo(Disposables);
+            if (View.NameText != null)
+                View.NameText.Bind(model.Name).AddTo(Disposables);
         }
 
-        private void UpdateModel(VisualizationElementModel model)
+        protected virtual void UpdateModel(TModel model)
         {
-
+            // Implementation in base or child class
         }
     }
+
 }

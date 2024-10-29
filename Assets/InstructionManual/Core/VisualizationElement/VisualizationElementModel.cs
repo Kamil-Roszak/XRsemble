@@ -10,6 +10,12 @@ namespace XRsemble.Core
 
         public IObservableValue<bool> IsVisible => _isVisible;
         private readonly ObservableValue<bool> _isVisible;
+
+        public VisualizationElementModel(ObservableValue<string> name, ObservableValue<bool> isVisible)
+        {
+            _name = name;
+            _isVisible = isVisible;
+        }
     }
 
 }

@@ -4,11 +4,12 @@ using XRsemble.MVVM.Bindings.TextMeshPro;
 
 namespace XRsemble.Core
 {
-    public class TextVisualizationElementViewModel : ViewModel<TextVisualizationElementView, TextVisualizationElementModel>
+    public class TextVisualizationElementViewModel : VisualizationElementViewModel<TextVisualizationElementView, TextVisualizationElementModel>
     {
         protected override void SetupBindings(TextVisualizationElementModel model)
         {
-            View.NameText.Bind(model.Name).AddTo(Disposables);
+            if(View.NameText != null)
+                View.NameText.Bind(model.Name).AddTo(Disposables);
             View.DisplayedText.Bind(model.DisplayedText).AddTo(Disposables);
         }
 

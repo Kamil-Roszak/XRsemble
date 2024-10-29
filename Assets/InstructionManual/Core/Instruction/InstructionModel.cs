@@ -12,6 +12,11 @@ namespace XRsemble.Core
         public IObservableValue<List<InstructionStepModel>> Steps => _steps;
         private readonly ObservableValue<List<InstructionStepModel>> _steps;
 
+        public InstructionModel(ObservableValue<string> name, ObservableValue<List<InstructionStepModel>> steps)
+        {
+            _name = name;
+            _steps = steps;
+        }
     }
 
 }
