@@ -13,7 +13,7 @@ namespace XRsemble.Core
         public GameObject targetObject;
         public List<Tuple<Transform, Color>> targetTransforms;
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             if (targetObject == null || targetTransforms == null)
                 return;
