@@ -14,7 +14,11 @@ namespace XRsemble.Core
         // Target transform that will be translated to
         public Transform translateTarget;
         // Target transform that will be translated from
+        [Header("Start Transform")]
         public Transform translateStart;
+        public bool currentTransformIsStartTransform = false;
+
+        public bool translateScale, translateRotation;
 
         [Header("For Gizmo Preview")]
         public MeshGameObjectGizmoPreview _targetTransformGizmoPreview;
@@ -27,14 +31,17 @@ namespace XRsemble.Core
 
         private void OnDrawGizmos()
         {
-            if (targetTransform != null && translateTarget != null && translateStart != null)
+            if (targetTransform != null && translateTarget != null && (translateStart != null || currentTransformIsStartTransform))
             {
                 if (_targetTransformGizmoPreview == null) _targetTransformGizmoPreview = GetComponent<MeshGameObjectGizmoPreview>();
                 _targetTransformGizmoPreview.targetTransforms = new List<System.Tuple<Transform, Color>>
                 {
                     new Tuple<Transform, Color>(translateTarget, Color.green),
-                    new Tuple<Transform, Color>(translateStart, Color.blue)
                 };
+                if (!currentTransformIsStartTransform)
+                {
+                    _targetTransformGizmoPreview.targetTransforms.Add(new Tuple<Transform, Color>(translateStart, Color.blue));
+                }
                 _targetTransformGizmoPreview.targetObject = targetTransform.gameObject;
             }
 
@@ -48,7 +55,10 @@ namespace XRsemble.Core
 
         public void Init()
         {
-            
+            if(currentTransformIsStartTransform)
+            {
+                translateStart = targetTransform;
+            }
         }
 
         public void Show()
@@ -61,6 +71,10 @@ namespace XRsemble.Core
             if (_timer <= translationTime && _isPlaying)
             {
                 targetTransform.position = Vector3.Lerp(translateStart.position, translateTarget.position, _timer / translationTime);
+                if (translateRotation)
+                    targetTransform.rotation = Quaternion.Lerp(translateStart.rotation, translateTarget.rotation, _timer / translationTime);
+                if (translateScale)
+                    targetTransform.localScale = Vector3.Lerp(translateStart.localScale, translateTarget.localScale, _timer / translationTime);
                 _timer += Time.deltaTime;
             }
         }
